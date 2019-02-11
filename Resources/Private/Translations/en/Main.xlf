@@ -3,6 +3,9 @@
     xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file original="" product-name="Jonnitto.PrettyEmbedVimeo" source-language="en" datatype="plaintext">
         <body>
+            <trans-unit id="needPreviewImage" xml:space="preserve">
+                <source>You need to define a custom preview image.</source>
+            </trans-unit>
             <trans-unit id="noVideoID" xml:space="preserve">
                 <source>Please add a Vimeo ID or url in the inspector</source>
             </trans-unit>
