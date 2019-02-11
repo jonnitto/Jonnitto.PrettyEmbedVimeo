@@ -23,7 +23,7 @@ class VimeoHelper implements ProtectedContextAwareInterface
         if (!$id) {
             return false;
         }
-        $data = json_decode(@file_get_contents('http://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $id . '&width=2560'));
+        $data = json_decode(@file_get_contents('https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $id . '&width=2560'));
         if (!$data) {
             return false;
         }
