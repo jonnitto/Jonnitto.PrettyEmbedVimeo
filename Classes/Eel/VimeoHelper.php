@@ -47,9 +47,9 @@ class VimeoHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * Grab the url of a image publicly embeddable video hosted on vimeo
-     * @param string $video_id The "id" of a video
-     * @return string The data or false if there's an error
+     * Grab the data of a publicly embeddable video hosted on vimeo
+     * @param string $id The "id" of a video
+     * @return mixed The data or false if there's an error
      */
     function data($id)
     {
@@ -63,6 +63,11 @@ class VimeoHelper implements ProtectedContextAwareInterface
         return $data;
     }
 
+    /**
+     * Grab the title of a publicly embeddable video hosted on vimeo
+     * @param string $id The "id" of a video
+     * @return mixed The title or false if there's an error
+     */
     function title($id) {
         $data = $this->data($id);
         if (!$data) {
@@ -71,6 +76,11 @@ class VimeoHelper implements ProtectedContextAwareInterface
         return $data->title;
     }
 
+    /**
+     * Grab the thumbnail of a publicly embeddable video hosted on vimeo
+     * @param string $id The "id" of a video
+     * @return mixed The thumbnail or false if there's an error
+     */
     function thumbnail($id) {
         $data = $this->data($id);
         if (!$data) {
