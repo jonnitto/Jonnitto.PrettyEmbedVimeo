@@ -1,0 +1,64 @@
+Carbon:
+  IncludeAssets:
+    Packages:
+      'Jonnitto.PrettyEmbedVimeo':
+        Package: 'Jonnitto.PrettyEmbedVimeo'
+        ConditionPrototype: 'Jonnitto.PrettyEmbedVimeo:IncludeAssets'
+        Path:
+          File:
+            CSS: 'Public'
+            JS: 'Public'
+        General:
+          Head: Main.css
+        Live:
+          Head: Main.js[defer]
+
+Jonnitto:
+  PrettyEmbedVimeo:
+    maximumWidth: 1280
+    wrapper: false
+    embed:
+      class: jonnitto-prettyembedvimeo--embed
+      video: 'https://player.vimeo.com/video/'
+    lightbox:
+      class: jonnitto-prettyembedvimeo--popup
+      video: 'https://player.vimeo.com/video/'
+    defaults:
+      lightbox: false
+      # Whether to pause the current video when another Vimeo video on the same page starts to play.
+      # Set this value to false to permit simultaneous playback of all the videos on the page.
+      autopause: true
+      # Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
+      background: false
+      # Whether to restart the video automatically after reaching the end.
+      loop: false
+      # Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
+      muted: false
+      # Whether the video plays inline on supported mobile devices.
+      # To force the device to play the video in fullscreen mode instead, set this value to false.
+      playsinline: true
+      # Whether the responsive player and transparent background are enabled
+      transparent: true
+      allowFullScreen: true
+      # The hexadecimal color value of the playback controls, which is normally 00ADEF.
+      color: false
+      # Whether the player displays the title overlay
+      previewTitle: false
+      # Whether to display the video owner's name.
+      previewByline: false
+      # Whether to display the video owner's portrait.
+      previewPortrait: false
+
+Neos:
+  Fusion:
+    defaultContext:
+      Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'
+  Neos:
+    userInterface:
+      translation:
+        autoInclude:
+          Jonnitto.PrettyEmbedVimeo:
+            - 'NodeTypes/*'
+    fusion:
+      autoInclude:
+        Jonnitto.PrettyEmbedVimeo: true

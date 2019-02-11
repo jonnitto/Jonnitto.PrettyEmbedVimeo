@@ -1,0 +1,4 @@
+prototype(Jonnitto.PrettyEmbedVimeo:IncludeAssets) < prototype(Carbon.IncludeAssets:Case) {
+    mixin = 'Jonnitto.PrettyEmbedVimeo:Mixin.IncludeAssets'
+    appendFilter = '[videoID != ""]'
+}

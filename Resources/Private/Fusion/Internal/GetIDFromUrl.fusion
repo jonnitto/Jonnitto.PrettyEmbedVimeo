@@ -1,0 +1,5 @@
+prototype(Jonnitto.PrettyEmbedVimeo:GetIDFromUrl) < prototype(Neos.Fusion:Value) {
+    match = ${String.pregMatch(value, '/(?:https?:\/\/)?(?:www\.)?(?:player\.)?vimeo\.com\/(?:[a-z]*\/)*([‌​0-9]{6,11})[?]?.*/')}
+    value = ${Type.isArray(this.match) ? this.match[1]: value}
+}
+
