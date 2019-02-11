@@ -1,6 +1,6 @@
 import Gator from 'gator';
 
-const SELECTOR = '.jonnitto-prettyembedvimeo--embed';
+const SELECTOR = 'a.jonnitto-prettyembedvimeo--inline';
 const PLAY_CLASS = 'jonnitto-prettyembedvimeo--play';
 
 function replaceTag(element, tagName) {

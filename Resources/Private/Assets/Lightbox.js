@@ -1,8 +1,9 @@
 import Gator from 'gator';
 
 const HTML = document.documentElement;
-const SELECTOR = '.jonnitto-prettyembedvimeo--popup';
-const BASE = 'jonnitto-prettyembedvimeo__popup';
+const SELECTOR = 'a.jonnitto-prettyembedvimeo--lightbox';
+const BASE = 'jonnitto-prettyembedvimeo__lightbox';
+
 const VISIBLE_CLASS = `${BASE}-visible`;
 const MARKUP = `
 <div class="${BASE}-holder">

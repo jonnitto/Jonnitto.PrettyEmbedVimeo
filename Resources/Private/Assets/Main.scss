@@ -1,5 +1,5 @@
-$prettyEmbedVimeo-include-embed: true !default;
-$prettyEmbedVimeo-include-popup: true !default;
+$prettyEmbedVimeo-include-inline: true !default;
+$prettyEmbedVimeo-include-lightbox: true !default;
 
 $prettyEmbedVimeo-overlay-color: #0b0b0b !default;
 $prettyEmbedVimeo-overlay-opacity: 0.8 !default;
@@ -51,8 +51,8 @@ $prettyEmbedVimeo-controls-color: #fff !default;
   display: none;
 }
 
-@if $prettyEmbedVimeo-include-embed {
-  .jonnitto-prettyembedvimeo--embed iframe {
+@if $prettyEmbedVimeo-include-inline {
+  .jonnitto-prettyembedvimeo--inline iframe {
     border: 0 solid transparent;
     position: absolute;
     top: 0;
@@ -62,8 +62,8 @@ $prettyEmbedVimeo-controls-color: #fff !default;
   }
 }
 
-@if $prettyEmbedVimeo-include-popup {
-  .jonnitto-prettyembedvimeo__popup {
+@if $prettyEmbedVimeo-include-lightbox {
+  .jonnitto-prettyembedvimeo__lightbox {
     display: block;
     position: fixed 0;
     content: "";
@@ -94,14 +94,14 @@ $prettyEmbedVimeo-controls-color: #fff !default;
       content: "";
     }
 
-    .jonnitto-prettyembedvimeo__popup-visible & {
+    .jonnitto-prettyembedvimeo__lightbox-visible & {
       z-index: $prettyEmbedVimeo-z-index-base + 9;
       opacity: 1;
       transition: opacity 0.2s;
     }
   }
 
-  .jonnitto-prettyembedvimeo__popup-inner {
+  .jonnitto-prettyembedvimeo__lightbox-inner {
     @if $prettyEmbedVimeo-iframe-padding-top {
       padding-top: $prettyEmbedVimeo-iframe-padding-top;
       padding-bottom: $prettyEmbedVimeo-iframe-padding-top;
@@ -115,7 +115,7 @@ $prettyEmbedVimeo-controls-color: #fff !default;
     transition: opacity 0.2s, transform 0.2s, z-index 0s 0.2s;
     width: 100%;
 
-    .jonnitto-prettyembedvimeo__popup-visible & {
+    .jonnitto-prettyembedvimeo__lightbox-visible & {
       z-index: $prettyEmbedVimeo-z-index-base + 10;
       opacity: 1;
       transform: scale(1);
@@ -123,13 +123,13 @@ $prettyEmbedVimeo-controls-color: #fff !default;
     }
   }
 
-  .jonnitto-prettyembedvimeo__popup-content {
+  .jonnitto-prettyembedvimeo__lightbox-content {
     line-height: 0;
     width: 100%;
     max-width: 900px;
   }
 
-  .jonnitto-prettyembedvimeo__popup-close {
+  .jonnitto-prettyembedvimeo__lightbox-close {
     top: -40px;
     user-select: none;
     overflow: visible;
@@ -168,7 +168,7 @@ $prettyEmbedVimeo-controls-color: #fff !default;
     }
   }
 
-  .jonnitto-prettyembedvimeo__popup-holder {
+  .jonnitto-prettyembedvimeo__lightbox-holder {
     display: block;
     width: 100%;
     height: 0;

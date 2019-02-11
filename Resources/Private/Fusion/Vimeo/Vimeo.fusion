@@ -45,7 +45,8 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
     }
 
     // Internal
-    thumbnail = ${Jonnitto.PrettyEmbedVimeo.thumbnail(this.videoID)}
+    data = ${Jonnitto.PrettyEmbedVimeo.data(this.videoID)}
+    thumbnail = ${this.data ? this.data.thumbnail : false}
     validImage = ${this.thumbnail || this.image}
     renderPlayer = ${this.videoID && this.validImage}
     @if.renderPlayerOrBackend = ${this.renderPlayer || node.context.inBackend}
@@ -57,13 +58,12 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
             class = Neos.Fusion:RawArray {
                 nodeType = 'jonnitto-prettyembedvimeo'
                 button = ${props.renderPlayer ? 'jonnitto-prettyembedvimeo__button' : false}
-                lightbox = ${props.lightbox ? props.configuration.lightbox.class : props.configuration.embed.class}
+                lightbox = ${props.lightbox ? props.configuration.class.lightbox : props.configuration.class.inline}
             }
             data-fs = ${props.allowFullScreen ? 'true' : 'false'}
             data-embed = Neos.Fusion:Array {
                 @if.hasVideoID  = ${props.renderPlayer}
-                src             = ${props.configuration.embed.video}
-                videoID         = ${props.videoID}
+                src             = ${String.replace(props.configuration.url.embed, '%id%', props.videoID)}
                 autoplay        = '?autoplay=1'
                 loop            = ${props.loop ? '&loop=1' : ''}
                 color           = ${props.color ? '&color=' + String.replace(props.color, '#', '') : ''}
@@ -76,7 +76,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
                 previewByline   = ${props.previewByline ? '' : '&byline=0'}
                 previewPortrait = ${props.previewPortrait ? '' : '&portrait=0'}
             }
-            href = ${props.configuration.lightbox.video + props.videoID}
+            href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
             target = '_blank'
         }
         content = afx`

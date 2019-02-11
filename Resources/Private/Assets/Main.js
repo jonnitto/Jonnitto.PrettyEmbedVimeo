@@ -1,2 +1,2 @@
 import './Embed';
-import './Popup';
+import './Lightbox';

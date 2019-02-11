@@ -18,22 +18,21 @@ class VimeoHelper implements ProtectedContextAwareInterface
      * @param string $video_id The "id" of a video
      * @return string The url of the thumbnail, or false if there's an error
      */
-    function thumbnail($id)
+    function data($id)
     {
         if (!$id) {
             return false;
         }
-        $url = 'http://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $id . '&width=2560';
-
-        if (substr(get_headers($url)[0], 9, 3) != '200') {
-            return false;
-        }
-
-        $data = json_decode(file_get_contents($url));
+        $data = json_decode(@file_get_contents('http://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $id . '&width=2560'));
         if (!$data) {
             return false;
         }
-        return $data->thumbnail_url;
+        return [
+            'title' => $data->title,
+            'description' => $data->description,
+            'duration' => $data->duration,
+            'thumbnail' => $data->thumbnail_url
+        ];
     }
 
     /**

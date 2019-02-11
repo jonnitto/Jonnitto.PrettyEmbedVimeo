@@ -17,12 +17,12 @@ Jonnitto:
   PrettyEmbedVimeo:
     maximumWidth: 1280
     wrapper: false
-    embed:
-      class: jonnitto-prettyembedvimeo--embed
-      video: 'https://player.vimeo.com/video/'
-    lightbox:
-      class: jonnitto-prettyembedvimeo--popup
-      video: 'https://player.vimeo.com/video/'
+    url:
+      embed: 'https://player.vimeo.com/video/%id%'
+      href: 'https://vimeo.com/%id%'
+    class:
+      inline: jonnitto-prettyembedvimeo--inline
+      lightbox: jonnitto-prettyembedvimeo--lightbox
     defaults:
       lightbox: false
       # Whether to pause the current video when another Vimeo video on the same page starts to play.
@@ -62,3 +62,8 @@ Neos:
     fusion:
       autoInclude:
         Jonnitto.PrettyEmbedVimeo: true
+  ContentRepository:
+    labelGenerator:
+      eel:
+        defaultContext:
+          Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'
