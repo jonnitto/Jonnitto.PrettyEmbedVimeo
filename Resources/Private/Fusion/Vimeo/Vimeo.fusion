@@ -5,7 +5,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
     image = ${q(node).property('image')}
     maximumWidth = ${this.configuration.maximumWidth}
     videoID = ${q(node).property('videoID')}
-    videoID.@process.getIDFromUrl = Jonnitto.PrettyEmbedVimeo:GetIDFromUrl
+    videoID.@process.getIDFromUrl = ${Jonnitto.PrettyEmbedVimeo.parseID(value)}
 
     lightbox = Jonnitto.PrettyEmbedVimeo:GetProperty {
         property = 'lightbox'
@@ -45,8 +45,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
     }
 
     // Internal
-    data = ${Jonnitto.PrettyEmbedVimeo.data(this.videoID)}
-    thumbnail = ${this.data ? this.data.thumbnail : false}
+    thumbnail = ${Jonnitto.PrettyEmbedVimeo.thumbnail(this.videoID)}
     validImage = ${this.thumbnail || this.image}
     renderPlayer = ${this.videoID && this.validImage}
     @if.renderPlayerOrBackend = ${this.renderPlayer || node.context.inBackend}
