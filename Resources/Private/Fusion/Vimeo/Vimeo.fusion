@@ -4,6 +4,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
     configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVimeo')}
     image = ${q(node).property('image')}
     maximumWidth = ${this.configuration.maximumWidth}
+    wrapper = ${this.configuration.wrapper}
     videoID = ${q(node).property('videoID')}
     videoID.@process.getIDFromUrl = ${Jonnitto.PrettyEmbedVimeo.parseID(value)}
 
@@ -102,8 +103,8 @@ prototype(Jonnitto.PrettyEmbedVimeo:Vimeo) < prototype(Neos.Neos:ContentComponen
         `
         @process {
             wrapper = Neos.Fusion:Tag {
-                @if.render = ${props.configuration.wrapper}
-                attributes.class = ${props.configuration.wrapper}
+                @if.render = ${props.wrapper}
+                attributes.class = ${Type.isString(props.wrapper) ? props.wrapper : null}
                 content = ${value}
             }
         }
