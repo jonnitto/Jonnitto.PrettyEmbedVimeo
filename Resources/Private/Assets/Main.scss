@@ -11,6 +11,7 @@ $prettyEmbedVimeo-shadow: 0 0 8px rgba(#000, 0.6) !default;
 $prettyEmbedVimeo-z-index-base: 1140 !default;
 $prettyEmbedVimeo-controls-opacity: 0.65 !default;
 $prettyEmbedVimeo-controls-color: #fff !default;
+$prettyEmbedVimeo-lightbox-padding: 15px !default;
 
 .jonnitto-prettyembedvimeo {
   position: relative;
@@ -77,6 +78,10 @@ $prettyEmbedVimeo-controls-color: #fff !default;
     overflow-y: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+
+    @if $prettyEmbedVimeo-lightbox-padding {
+      padding: $prettyEmbedVimeo-lightbox-padding;
+    }
 
     > * {
       display: inline-block;
