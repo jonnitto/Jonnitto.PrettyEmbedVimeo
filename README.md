@@ -29,7 +29,7 @@ The `--no-update` command prevent the automatic update of the dependencies. Afte
 
 ## FAQ
 
-**What are the differences from this package to the [Jonnitto.Plyr](https://github.com/jonnitto/Jonnitto.Plyr) or the [Jonnitto.PrettyEmbedYoutube](https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube)  package?**
+**What are the differences from this package to the [Jonnitto.Plyr](https://github.com/jonnitto/Jonnitto.Plyr) or the [Jonnitto.PrettyEmbedYoutube](https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube) package?**
 
 |                     | Jonnitto.PrettyEmbedVimeo | Jonnitto.Plyr | Jonnitto.PrettyEmbedYoutube |
 | ------------------- | :-----------------------: | :-----------: | :-------------------------: |
@@ -46,7 +46,3 @@ The `--no-update` command prevent the automatic update of the dependencies. Afte
 Jonnitto.PrettyembedVimeo also has the benefit of a better frontend  
 performance since the player gets only loaded on request.  
 So, no iframe until the user wants to watch a video.
-
-## License
-
-Licensed under MIT, see [LICENSE](LICENSE)
