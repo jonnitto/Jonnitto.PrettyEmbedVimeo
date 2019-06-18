@@ -1,28 +1,8 @@
-Carbon:
-  IncludeAssets:
-    Packages:
-      'Jonnitto.PrettyEmbedVimeo':
-        Package: 'Jonnitto.PrettyEmbedVimeo'
-        ConditionPrototype: 'Jonnitto.PrettyEmbedVimeo:IncludeAssets'
-        Path:
-          File:
-            CSS: 'Public'
-            JS: 'Public'
-        General:
-          Head: Main.css
-        Live:
-          Head: Main.js[defer]
-
 Jonnitto:
   PrettyEmbedVimeo:
-    maximumWidth: 1280
-    wrapper: false
     url:
       embed: 'https://player.vimeo.com/video/%id%'
       href: 'https://vimeo.com/%id%'
-    class:
-      inline: jonnitto-prettyembedvimeo--inline
-      lightbox: jonnitto-prettyembedvimeo--lightbox
     defaults:
       lightbox: false
       # Whether to pause the current video when another Vimeo video on the same page starts to play.
@@ -35,7 +15,7 @@ Jonnitto:
       # Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
       muted: false
       # Whether the video plays inline on supported mobile devices.
-      # To force the device to play the video in fullscreen mode instead, set this value to false.
+      # Note that if set to false it does not imply that the video will always be played in fullscreen.
       playsinline: true
       # Whether the responsive player and transparent background are enabled
       transparent: true
@@ -48,22 +28,3 @@ Jonnitto:
       previewByline: false
       # Whether to display the video owner's portrait.
       previewPortrait: false
-
-Neos:
-  Fusion:
-    defaultContext:
-      Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'
-  Neos:
-    userInterface:
-      translation:
-        autoInclude:
-          Jonnitto.PrettyEmbedVimeo:
-            - 'NodeTypes/*'
-    fusion:
-      autoInclude:
-        Jonnitto.PrettyEmbedVimeo: true
-  ContentRepository:
-    labelGenerator:
-      eel:
-        defaultContext:
-          Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'

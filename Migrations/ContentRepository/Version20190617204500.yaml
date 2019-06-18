@@ -1,0 +1,23 @@
+up:
+  comments: 'Correct NodeType from Vimeo to Content.Vimeo'
+  migration:
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedVimeo:Vimeo'
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVimeo:Content.Vimeo'
+
+down:
+  comments: 'Correct NodeType from Content.Vimeo to Vimeo'
+  migration:
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedVimeo:Content.Vimeo'
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVimeo:Vimeo'

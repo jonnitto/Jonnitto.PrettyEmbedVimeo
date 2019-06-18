@@ -1,0 +1,69 @@
+prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Component) {
+    configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVimeo')}
+
+    live = true
+    videoID = null
+
+    lightbox = ${this.configuration.defaults.lightbox}
+    allowFullScreen = ${this.configuration.defaults.allowFullScreen}
+    loop = ${this.configuration.defaults.loop}
+    color = ${this.configuration.defaults.color}
+    autopause = ${this.configuration.defaults.autopause}
+    background = ${this.configuration.defaults.background}
+    muted = ${this.configuration.defaults.muted}
+    playsinline = ${this.configuration.defaults.playsinline}
+    transparent = ${this.configuration.defaults.transparent}
+    previewTitle = ${this.configuration.defaults.previewTitle}
+    previewByline = ${this.configuration.defaults.previewByline}
+    previewPortrait = ${this.configuration.defaults.previewPortrait}
+
+    wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
+
+    id = null
+
+    poster = null
+    alternativeText = ${Jonnitto.PrettyEmbedVimeo.title(this.videoID)}
+
+    // Internal
+    type = ${this.lightbox ? 'lightbox' : 'inline'}
+    thumbnail = ${this.poster ? this.poster : Jonnitto.PrettyEmbedVimeo.thumbnail(this.videoID)}
+    @if.hasVideoIdAndThumbnail = ${this.videoID && this.thumbnail}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = ${props.live ? 'a' : 'div'}
+        attributes {
+            id = ${props.id}
+            class = Carbon.Eel:BEM {
+                block = 'jonnitto-prettyembed'
+                modifier = Neos.Fusion:DataStructure {
+                    vimeo = true
+                    iframe = true
+                    type = ${props.type}
+                }
+            }
+            href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
+            target = '_blank'
+            data-fs = ${!!props.allowFullScreen}
+            data-embed = Neos.Fusion:Join {
+                src             = ${String.replace(props.configuration.url.embed, '%id%', props.videoID)}
+                connect        = ${String.indexOf(props.configuration.url.embed, '?') == -1 ? '?' : '&'}
+                autoplay       = 'autoplay=1'
+                loop            = ${props.loop ? '&loop=1' : ''}
+                color           = ${props.color ? '&color=' + String.replace(props.color, '#', '') : ''}
+                autopause       = ${props.autopause ? '' : '&autopause=0'}
+                background      = ${props.background ? '' : '&background=0'}
+                muted           = ${props.muted ? '&muted=1' : ''}
+                playsinline     = ${props.playsinline ? '' : '&playsinline=0'}
+                transparent     = ${props.transparent ? '' : '&transparent=0'}
+                previewTitle    = ${props.previewTitle ? '' : '&title=0'}
+                previewByline   = ${props.previewByline ? '' : '&byline=0'}
+                previewPortrait = ${props.previewPortrait ? '' : '&portrait=0'}
+            }
+        }
+        content = afx`<img alt={props.alternativeText} src={props.thumbnail} />`
+
+        @process.wrapper = Jonnitto.PrettyEmbedHelper:Wrapper {
+            wrapper = ${props.wrapper}
+        }
+    }
+}

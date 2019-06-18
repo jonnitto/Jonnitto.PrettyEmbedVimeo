@@ -1,0 +1,13 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        Jonnitto.PrettyEmbedVimeo: true
+  Fusion:
+    defaultContext:
+      Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'
+  ContentRepository:
+    labelGenerator:
+      eel:
+        defaultContext:
+          Jonnitto.PrettyEmbedVimeo: 'Jonnitto\PrettyEmbedVimeo\Eel\VimeoHelper'

@@ -1,0 +1,70 @@
+prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEmbedHelper:Content) {
+    package = 'Vimeo'
+
+    videoID = ${q(node).property('videoID')}
+    videoID.@process.getIDFromUrl = ${Jonnitto.PrettyEmbedVimeo.parseID(value)}
+    alternativeText = ${Jonnitto.PrettyEmbedVimeo.title(this.videoID)}
+
+    allowFullScreen = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'allowFullScreen'
+    }
+    autopause = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'autopause'
+    }
+    color = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'color'
+    }
+    background = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'background'
+    }
+    transparent = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'transparent'
+    }
+    previewTitle = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'previewTitle'
+    }
+    previewByline = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'previewByline'
+    }
+    previewPortrait = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'previewPortrait'
+    }
+
+    renderer = Neos.Fusion:Component {
+        @apply.props = ${props}
+        poster = Neos.Fusion:Case {
+            hasCustomImage {
+                condition = ${props.image}
+                renderer = Neos.Neos:ImageUri {
+                    asset = ${props.image}
+                    async = true
+                    maximumWidth = ${props.maximumWidth}
+                }
+            }
+            getThumbnailFromVimeo {
+                condition = ${props.videoID}
+                renderer = ${Jonnitto.PrettyEmbedVimeo.thumbnail(props.videoID)}
+            }
+        }
+        renderer = Neos.Fusion:Case {
+            noVideoID {
+                condition = ${!props.videoID}
+                renderer = Jonnitto.PrettyEmbedHelper:Notification {
+                    key = 'noVideoID'
+                    default = 'Please add a Vimeo ID or url in the inspector'
+                }
+            }
+            noPoster {
+                condition = ${!props.poster}
+                renderer = Jonnitto.PrettyEmbedHelper:Notification {
+                    key = 'needPreviewImage'
+                    default = 'You need to define a custom preview image.'
+                }
+            }
+            default {
+                condition = true
+                renderer = afx`<Jonnitto.PrettyEmbedVimeo:Component.Vimeo {...props} live={node.context.live} />`
+            }
+        }
+    }
+}
