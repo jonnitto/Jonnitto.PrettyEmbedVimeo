@@ -58,6 +58,40 @@ If you install the PrettyEmbedCollection the video players get grouped into a ow
 
 All packages from the PrettyEmbed series have the benefit of a better frontend performance since the player gets only loaded on request. So, no iframe/video get's loaded until the user wants to watch a video.
 
+## Customization
+
+### Configuration
+
+If you want to customize the default settings, take a look at the [Settings.Jonnitto.yaml](Configuration/Settings.Jonnitto.yaml#6) file. If no node property is giving, these default values will be taken. If you, for example, don't want to let the editor choose if the video should open in a lightbox you can deactivate the mixin in your Configuration folder like this:
+
+```yaml
+"Jonnitto.PrettyEmbedVimeo:Content.Vimeo":
+  superTypes:
+    "Jonnitto.PrettyEmbedHelper:Mixin.Lightbox": false
+```
+
+These are the available mixins:
+
+| Mixin name                                         | Description                                                           | Enabled |
+| -------------------------------------------------- | --------------------------------------------------------------------- | :-----: |
+| `Jonnitto.PrettyEmbedHelper:Mixin.Groups`          | Enables the inspector groups                                          |    ✓    |
+| `Jonnitto.PrettyEmbedHelper:Mixin.IncludeAssets`   | Include the frontend resources                                        |    ✓    |
+| `Jonnitto.PrettyEmbedHelper:Mixin.Image`           | Add the preview image property                                        |    ✓    |
+| `Jonnitto.PrettyEmbedHelper:Mixin.Lightbox`        | Open the video in a lightbox, defaults to `false`                     |    ✓    |
+| `Jonnitto.PrettyEmbedVimeo:Mixin.VideoID`          | Let the user enter the video id or youtube url                        |    ✓    |
+| `Jonnitto.PrettyEmbedVimeo:Mixin.BackendLabel`     | Read the title of the video and set this as label in the content tree |    ✓    |
+| `Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen` | Allow fullscreen or not, defaults to `true`                           |         |
+| `Jonnitto.PrettyEmbedHelper:Mixin.Muted`           | Whether the video is muted upon loading, defaults to `false`          |         |
+| `Jonnitto.PrettyEmbedHelper:Mixin.Loop`            | Loop the video, defaults to `false`                                   |         |
+
+If you want to give the editor even more control, you can also add your own properties like `color`, or `background`, for example. For a full list look at the `defaults` section in the [Settings.Jonnitto.yaml](Configuration/Settings.Jonnitto.yaml#6) file.
+
+### Fusion
+
+If you want to use the player as a pure component, you can use the [`Jonnitto.PrettyEmbedVimeo:Component.Vimeo`](Resources/Private/Fusion/Component/Vimeo.fusion) fusion prototype.
+
+If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVimeo:Content.Vimeo`](Resources/Private/Fusion/Content/Vimeo.fusion) prototype. For easier including in your own node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create for example a text with video node type.
+
 ## Update from version 1
 
 To update from version 1, you have to run following command in your cli:  
