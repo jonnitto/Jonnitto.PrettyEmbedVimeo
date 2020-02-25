@@ -60,7 +60,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 previewPortrait = ${props.previewPortrait ? '' : '&portrait=0'}
             }
         }
-        content = afx`<img alt={props.alternativeText} src={props.thumbnail} />`
+        content = afx`<img alt={props.alternativeText} src={props.thumbnail} loading='lazy' />`
 
         @process.wrapper = Jonnitto.PrettyEmbedHelper:Wrapper {
             wrapper = ${props.wrapper}
