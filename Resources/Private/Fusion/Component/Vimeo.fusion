@@ -42,6 +42,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 }
             }
             href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
+            rel = 'noopener'
             target = '_blank'
             data-fs = ${!!props.allowFullScreen}
             data-embed = Neos.Fusion:Join {
