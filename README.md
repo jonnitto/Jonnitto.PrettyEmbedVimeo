@@ -1,22 +1,14 @@
-[![Latest Stable Version](https://poser.pugx.org/jonnitto/prettyembedvimeo/v/stable)](https://packagist.org/packages/jonnitto/prettyembedvimeo)
-[![Total Downloads](https://poser.pugx.org/jonnitto/prettyembedvimeo/downloads)](https://packagist.org/packages/jonnitto/prettyembedvimeo)
-[![License](https://poser.pugx.org/jonnitto/prettyembedvimeo/license)](https://packagist.org/packages/jonnitto/prettyembedvimeo)
-[![GitHub forks](https://img.shields.io/github/forks/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Fork)](https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/fork)
-[![Support development](https://img.shields.io/badge/Donate-PayPal-yellow.svg)](https://www.paypal.me/Jonnitto/20eur)
-[![My wishlist on amazon](https://img.shields.io/badge/Wishlist-Amazon-yellow.svg)](https://www.amazon.de/hz/wishlist/ls/2WPGORAVYF39B?&sort=default)  
-[![GitHub stars](https://img.shields.io/github/stars/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Stars)](https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/stargazers)
-[![GitHub watchers](https://img.shields.io/github/watchers/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Watch)](https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/subscription)
-[![GitHub followers](https://img.shields.io/github/followers/jonnitto.svg?style=social&label=Follow)](https://github.com/jonnitto/followers)
-[![Follow Jon on Twitter](https://img.shields.io/twitter/follow/jonnitto.svg?style=social&label=Follow)](https://twitter.com/jonnitto)
+[![Latest stable version]][packagist] [![Total downloads]][packagist] [![License]][packagist] [![GitHub forks]][fork] [![Donate Paypal]][paypal] [![Wishlist amazon]][amazon] [![GitHub stars]][stargazers] [![GitHub watchers]][subscription] [![GitHub followers]][followers] [![Follow Jon on Twitter]][twitter]
 
 # Jonnitto.PrettyEmbedVimeo
 
-Prettier embeds for your Vimeo videos in [Neos CMS](https://www.neos.io) - with nice options like high-res preview images, lightbox feature and advanced customization of embed options.
+Prettier embeds for your Vimeo videos in [Neos CMS] - with nice options like high-res preview images, lightbox feature and advanced customization of embed options.
 
 | Version | Neos          |
 | ------- | ------------- |
 | 1.\*    | 3.3.\* + 4.\* |
 | 2.\*    | ^4.2.\*       |
+| 3.\*    | ^4.2.\*       |
 
 ## Installation
 
@@ -30,17 +22,17 @@ The `--no-update` command prevent the automatic update of the dependencies. Afte
 
 ## PrettyEmbedCollection
 
-This package is member of the [PrettyEmbedCollection](https://github.com/jonnitto/Jonnitto.PrettyembedCollection) which contains following packages:
+This package is member of the [PrettyEmbedCollection] which contains following packages:
 
-- [PrettyEmbedVideo](https://github.com/jonnitto/Jonnitto.PrettyEmbedVideo)
-- [PrettyEmbedVimeo](https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo)
-- [PrettyEmbedYoutube](https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube)
+- [PrettyEmbedVideo]
+- [PrettyEmbedVimeo]
+- [PrettyEmbedYoutube]
 
 If you install the PrettyEmbedCollection the video players get grouped into a own group in the node inspector, otherwise they will be in the default group.
 
 ## FAQ
 
-**What are the differences from the PrettyEmbed series to [Jonnitto.Plyr](https://github.com/jonnitto/Jonnitto.Plyr)?**
+**What are the differences from the PrettyEmbed series to [Jonnitto.Plyr]?**
 
 |                                    | PrettyEmbed series |  Plyr  |
 | ---------------------------------- | :----------------: | :----: |
@@ -62,12 +54,12 @@ All packages from the PrettyEmbed series have the benefit of a better frontend p
 
 ### Configuration
 
-If you want to customize the default settings, take a look at the [Settings.Jonnitto.yaml](Configuration/Settings.Jonnitto.yaml#6) file. If no node property is giving, these default values will be taken. If you, for example, don't want to let the editor choose if the video should open in a lightbox you can deactivate the mixin in your Configuration folder like this:
+If you want to customize the default settings, take a look at the [Settings.Jonnitto.yaml] file. If no node property is giving, these default values will be taken. If you, for example, don't want to let the editor choose if the video should open in a lightbox you can deactivate the mixin in your Configuration folder like this:
 
 ```yaml
-"Jonnitto.PrettyEmbedVimeo:Content.Vimeo":
+'Jonnitto.PrettyEmbedVimeo:Content.Vimeo':
   superTypes:
-    "Jonnitto.PrettyEmbedHelper:Mixin.Lightbox": false
+    'Jonnitto.PrettyEmbedHelper:Mixin.Lightbox': false
 ```
 
 These are the available mixins:
@@ -84,13 +76,13 @@ These are the available mixins:
 | `Jonnitto.PrettyEmbedHelper:Mixin.Muted`           | Whether the video is muted upon loading, defaults to `false`          |         |
 | `Jonnitto.PrettyEmbedHelper:Mixin.Loop`            | Loop the video, defaults to `false`                                   |         |
 
-If you want to give the editor even more control, you can also add your own properties like `color`, or `background`, for example. For a full list look at the `defaults` section in the [Settings.Jonnitto.yaml](Configuration/Settings.Jonnitto.yaml#6) file.
+If you want to give the editor even more control, you can also add your own properties like `color`, or `background`, for example. For a full list look at the `defaults` section in the [Settings.Jonnitto.yaml] file.
 
 ### Fusion
 
-If you want to use the player as a pure component, you can use the [`Jonnitto.PrettyEmbedVimeo:Component.Vimeo`](Resources/Private/Fusion/Component/Vimeo.fusion) fusion prototype.
+If you want to use the player as a pure component, you can use the [`Jonnitto.PrettyEmbedVimeo:Component.Vimeo`] fusion prototype.
 
-If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVimeo:Content.Vimeo`](Resources/Private/Fusion/Content/Vimeo.fusion) prototype. For easier including in your own node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create for example a text with video node type.
+If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVimeo:Content.Vimeo`] prototype. For easier including in your own node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create for example a text with video node type.
 
 ## Update from version 1
 
@@ -99,3 +91,32 @@ To update from version 1, you have to run following command in your cli:
 
 To check the current state of the migrations, you can run  
 `./flow node:migrationstatus`
+
+[packagist]: https://packagist.org/packages/jonnitto/prettyembedvimeo
+[latest stable version]: https://poser.pugx.org/jonnitto/prettyembedvimeo/v/stable
+[total downloads]: https://poser.pugx.org/jonnitto/prettyembedvimeo/downloads
+[license]: https://poser.pugx.org/jonnitto/prettyembedvimeo/license
+[github forks]: https://img.shields.io/github/forks/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Fork
+[donate paypal]: https://img.shields.io/badge/Donate-PayPal-yellow.svg
+[wishlist amazon]: https://img.shields.io/badge/Wishlist-Amazon-yellow.svg
+[amazon]: https://www.amazon.de/hz/wishlist/ls/2WPGORAVYF39B?&sort=default
+[paypal]: https://www.paypal.me/Jonnitto/20eur
+[github stars]: https://img.shields.io/github/stars/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Stars
+[github watchers]: https://img.shields.io/github/watchers/jonnitto/Jonnitto.PrettyEmbedVimeo.svg?style=social&label=Watch
+[github followers]: https://img.shields.io/github/followers/jonnitto.svg?style=social&label=Follow
+[follow jon on twitter]: https://img.shields.io/twitter/follow/jonnitto.svg?style=social&label=Follow
+[twitter]: https://twitter.com/jonnitto
+[fork]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/fork
+[stargazers]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/stargazers
+[subscription]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo/subscription
+[followers]: https://github.com/jonnitto/followers
+[license]: LICENSE
+[neos cms]: https://www.neos.io
+[prettyembedcollection]: https://github.com/jonnitto/Jonnitto.PrettyembedCollection
+[prettyembedvideo]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideo
+[prettyembedvimeo]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo
+[prettyembedyoutube]: https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube
+[jonnitto.plyr]: https://github.com/jonnitto/Jonnitto.Plyr
+[settings.jonnitto.yaml]: Configuration/Settings.Jonnitto.yaml
+[`jonnitto.prettyembedvimeo:component.vimeo`]: Resources/Private/Fusion/Component/Vimeo.fusion
+[`jonnitto.prettyembedvimeo:content.vimeo`]: Resources/Private/Fusion/Content/Vimeo.fusion
