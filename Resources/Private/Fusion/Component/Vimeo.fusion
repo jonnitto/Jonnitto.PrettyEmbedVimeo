@@ -17,16 +17,23 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     previewByline = ${this.configuration.defaults.previewByline}
     previewPortrait = ${this.configuration.defaults.previewPortrait}
 
+    # Pass a ratio like this: ${16 / 9}
+    ratio = null
+    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value, this.dataFromService ? this.dataFromService.width : null, this.dataFromService ? this.dataFromService.height : null)}
+
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
     id = null
 
     poster = null
-    alternativeText = ${Jonnitto.PrettyEmbedVimeo.title(this.videoID)}
+    dataFromService = ${Jonnitto.PrettyEmbedVimeo.data(this.videoID)}
+    alternativeText = ${this.dataFromService ? this.dataFromService.title : null}
+
+    playButton = Jonnitto.PrettyEmbedHelper:Button.Play
 
     // Internal
     type = ${this.lightbox ? 'lightbox' : 'inline'}
-    thumbnail = ${this.poster ? this.poster : Jonnitto.PrettyEmbedVimeo.thumbnail(this.videoID)}
+    thumbnail = ${this.poster ? this.poster : this.dataFromService ? this.dataFromService.thumbnail_url : null}
     @if.hasVideoIdAndThumbnail = ${this.videoID && this.thumbnail}
 
     renderer = Neos.Fusion:Tag {
@@ -38,17 +45,20 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 modifier = Neos.Fusion:DataStructure {
                     vimeo = true
                     iframe = true
+                    ratio = ${!!props.ratio}
                     type = ${props.type}
                 }
             }
             href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
             rel = 'noopener'
             target = '_blank'
+            style = ${props.ratio ? 'padding-top:' + props.ratio : null}
+            data-ratio = ${props.ratio || null}
             data-fs = ${!!props.allowFullScreen}
             data-embed = Neos.Fusion:Join {
                 src             = ${String.replace(props.configuration.url.embed, '%id%', props.videoID)}
-                connect        = ${String.indexOf(props.configuration.url.embed, '?') == -1 ? '?' : '&'}
-                autoplay       = 'autoplay=1'
+                connect         = ${String.indexOf(props.configuration.url.embed, '?') == -1 ? '?' : '&'}
+                autoplay        = 'autoplay=1'
                 loop            = ${props.loop ? '&loop=1' : ''}
                 color           = ${props.color ? '&color=' + String.replace(props.color, '#', '') : ''}
                 autopause       = ${props.autopause ? '' : '&autopause=0'}
@@ -61,7 +71,10 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 previewPortrait = ${props.previewPortrait ? '' : '&portrait=0'}
             }
         }
-        content = afx`<img alt={props.alternativeText} src={props.thumbnail} loading='lazy' />`
+        content = afx`
+            {props.playButton}
+            <img alt={props.alternativeText} src={props.thumbnail} loading='lazy' />
+        `
 
         @process.wrapper = Jonnitto.PrettyEmbedHelper:Wrapper {
             wrapper = ${props.wrapper}
