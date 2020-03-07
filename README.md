@@ -4,11 +4,11 @@
 
 Prettier embeds for your Vimeo videos in [Neos CMS] - with nice options like high-res preview images, lightbox feature and advanced customization of embed options.
 
-| Version | Neos          |
-| ------- | ------------- |
-| 1.\*    | 3.3.\* + 4.\* |
-| 2.\*    | ^4.2.\*       |
-| 3.\*    | ^4.2.\*       |
+| Version | Neos           |
+| ------- | -------------- |
+| 1.\*    | 3.3.\* + 4.\*  |
+| 2.\*    | ^4.2.\* + 5.\* |
+| 3.\*    | ^4.2.\* + 5.\* |
 
 ## Installation
 
