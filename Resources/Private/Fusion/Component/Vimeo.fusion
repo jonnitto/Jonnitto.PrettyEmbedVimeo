@@ -5,6 +5,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     videoID = null
 
     lightbox = ${this.configuration.defaults.lightbox}
+    preserveAspectRatio = ${this.configuration.defaults.preserveAspectRatio}
     allowFullScreen = ${this.configuration.defaults.allowFullScreen}
     loop = ${this.configuration.defaults.loop}
     color = ${this.configuration.defaults.color}
@@ -45,16 +46,17 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 modifier = Neos.Fusion:DataStructure {
                     vimeo = true
                     iframe = true
-                    ratio = ${!!props.ratio}
+                    ratio = ${props.lightbox && props.preserveAspectRatio ? null : !!props.ratio}
                     type = ${props.type}
                 }
             }
             href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
             rel = 'noopener'
             target = '_blank'
-            style = ${props.ratio ? 'padding-top:' + props.ratio : null}
+            style = ${props.lightbox && props.preserveAspectRatio ? null : (props.ratio ? 'padding-top:' + props.ratio : null)}
             data-ratio = ${props.ratio || null}
             data-fs = ${!!props.allowFullScreen}
+            data-preserveAspectRatio = ${props.preserveAspectRatio ? 'Yes' : 'no'}
             data-embed = Neos.Fusion:Join {
                 src             = ${String.replace(props.configuration.url.embed, '%id%', props.videoID)}
                 connect         = ${String.indexOf(props.configuration.url.embed, '?') == -1 ? '?' : '&'}

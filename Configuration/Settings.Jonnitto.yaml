@@ -4,7 +4,10 @@ Jonnitto:
       embed: 'https://player.vimeo.com/video/%id%'
       href: 'https://vimeo.com/%id%'
     defaults:
+      # Should the video be opened on a lightbox? Per default this is set via the node properties
       lightbox: false
+      # When the lightbox is set, should the preview image preserve his aspect ratio?  default this is set via the node properties
+      preserveAspectRatio: true
       # Whether to pause the current video when another Vimeo video on the same page starts to play.
       # Set this value to false to permit simultaneous playback of all the videos on the page.
       autopause: true
