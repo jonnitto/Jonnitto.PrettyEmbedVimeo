@@ -3,6 +3,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
 
     live = true
     videoID = null
+    videoID.@process.trim = ${Type.isString(value) ? String.trim(value) : value}
 
     lightbox = ${this.configuration.defaults.lightbox}
     preserveAspectRatio = ${this.configuration.defaults.preserveAspectRatio}
@@ -20,21 +21,26 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
 
     # Pass a ratio like this: ${16 / 9}
     ratio = null
-    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value, this.dataFromService ? this.dataFromService.width : null, this.dataFromService ? this.dataFromService.height : null)}
+    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value)}
+
+    // If true, this get only a value if ratio is not set
+    force16to9 = false
+    force16to9.@process.calculatePaddingTop = ${!this.ratio && value ? Jonnitto.PrettyEmbedHelper.paddingTop(16 / 9) : false}
 
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
     id = null
 
     poster = null
-    dataFromService = ${Jonnitto.PrettyEmbedVimeo.data(this.videoID)}
-    alternativeText = ${this.dataFromService ? this.dataFromService.title : null}
+    alternativeText = null
 
     playButton = Jonnitto.PrettyEmbedHelper:Button.Play
 
     // Internal
     type = ${this.lightbox ? 'lightbox' : 'inline'}
-    thumbnail = ${this.poster ? this.poster : this.dataFromService ? this.dataFromService.thumbnail_url : null}
+    thumbnail = ${this.poster || Jonnitto.PrettyEmbedHelper.vimeoThumbnail(this.videoID)}
+    hasRatioAndNoLightboxWithPreserveAspectRatio = ${this.lightbox && this.preserveAspectRatio ? false : !!this.ratio}
+    forceRatio = ${this.ratio || this.force16to9}
     @if.hasVideoIdAndThumbnail = ${this.videoID && this.thumbnail}
 
     renderer = Neos.Fusion:Tag {
@@ -46,15 +52,15 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
                 modifier = Neos.Fusion:DataStructure {
                     vimeo = true
                     iframe = true
-                    ratio = ${props.lightbox && props.preserveAspectRatio ? null : !!props.ratio}
+                    ratio = ${!!props.force16to9 || !!props.hasRatioAndNoLightboxWithPreserveAspectRatio}
                     type = ${props.type}
                 }
             }
             href = ${String.replace(props.configuration.url.href, '%id%', props.videoID)}
             rel = 'noopener'
             target = '_blank'
-            style = ${props.lightbox && props.preserveAspectRatio ? null : (props.ratio ? 'padding-top:' + props.ratio : null)}
-            data-ratio = ${props.ratio || null}
+            style = ${props.force16to9 || props.hasRatioAndNoLightboxWithPreserveAspectRatio ? 'padding-top:' + props.forceRatio : null}
+            data-ratio = ${props.forceRatio || null}
             data-fs = ${!!props.allowFullScreen}
             data-preserveAspectRatio = ${props.preserveAspectRatio ? 'Yes' : 'no'}
             data-embed = Neos.Fusion:Join {

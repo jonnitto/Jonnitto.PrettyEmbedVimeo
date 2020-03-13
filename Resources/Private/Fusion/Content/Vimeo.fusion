@@ -1,13 +1,17 @@
 prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEmbedHelper:Content) {
     package = 'Vimeo'
 
+    metadataID = ${q(node).property('metadataID')}
     videoID = ${q(node).property('videoID')}
-    videoID.@process.getIDFromUrl = ${Jonnitto.PrettyEmbedVimeo.parseID(value)}
-    dataFromService = ${Jonnitto.PrettyEmbedVimeo.data(this.videoID)}
-    alternativeText = ${this.dataFromService ? this.dataFromService.title : null}
-    ratio = null
-    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value, this.dataFromService ? this.dataFromService.width : null, this.dataFromService ? this.dataFromService.height : null)}
+    videoID.@process.getIDFromUrl = ${this.metadataID ? this.metadataID : Jonnitto.PrettyEmbedHelper.vimeoID(value)}
 
+    alternativeText = ${q(node).property('metadataTitle')}
+    imageFromVimeo = ${q(node).property('metadataImage')}
+    ratio = ${q(node).property('metadataRatio')}
+
+    force16to9 = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'force16to9'
+    }
     allowFullScreen = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'allowFullScreen'
     }
@@ -46,7 +50,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEm
             }
             getThumbnailFromVimeo {
                 condition = ${props.videoID}
-                renderer = ${props.dataFromService.thumbnail_url}
+                renderer = ${props.imageFromVimeo || Jonnitto.PrettyEmbedHelper.vimeoThumbnail(props.videoID)}
             }
         }
         renderer = Neos.Fusion:Case {
