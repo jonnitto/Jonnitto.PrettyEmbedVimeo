@@ -62,7 +62,6 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
             style = ${props.force16to9 || props.hasRatioAndNoLightboxWithPreserveAspectRatio ? 'padding-top:' + props.forceRatio : null}
             data-ratio = ${props.forceRatio || null}
             data-fs = ${!!props.allowFullScreen}
-            data-preserveAspectRatio = ${props.preserveAspectRatio ? 'Yes' : 'no'}
             data-embed = Neos.Fusion:Join {
                 src             = ${String.replace(props.configuration.url.embed, '%id%', props.videoID)}
                 connect         = ${String.indexOf(props.configuration.url.embed, '?') == -1 ? '?' : '&'}
