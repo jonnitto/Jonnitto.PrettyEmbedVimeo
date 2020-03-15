@@ -4,6 +4,8 @@
 
 Prettier embeds for your Vimeo videos in [Neos CMS] - with nice options like high-res preview images, lightbox feature and advanced customization of embed options.
 
+![screenshot]
+
 | Version | Neos           |
 | ------- | -------------- |
 | 1.\*    | 3.3.\* + 4.\*  |
@@ -208,3 +210,4 @@ To check the current state of the migrations, you can run
 [carbon.includeassets]: https://github.com/CarbonPackages/Carbon.IncludeAssets
 [carbon settings from helper]: https://github.com/jonnitto/Jonnitto.PrettyEmbedHelper/blob/master/Configuration/Settings.Carbon.yaml
 [`main.scss`]: https://github.com/jonnitto/Jonnitto.PrettyEmbedHelper/blob/master/Resources/Private/Assets/Main.scss
+[screenshot]: https://user-images.githubusercontent.com/4510166/76709811-0a61d280-6702-11ea-94b6-44fb45ec44eb.png
