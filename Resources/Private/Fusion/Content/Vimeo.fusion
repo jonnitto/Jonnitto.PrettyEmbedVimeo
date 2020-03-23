@@ -37,6 +37,9 @@ prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEm
         property = 'previewPortrait'
     }
 
+    enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
+    gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
+
     renderer = Neos.Fusion:Component {
         @apply.props = ${props}
         poster = Neos.Fusion:Case {

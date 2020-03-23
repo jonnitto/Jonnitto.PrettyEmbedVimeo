@@ -18,6 +18,8 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     previewTitle = ${this.configuration.defaults.previewTitle}
     previewByline = ${this.configuration.defaults.previewByline}
     previewPortrait = ${this.configuration.defaults.previewPortrait}
+    enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
+    gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
     # Pass a ratio like this: ${16 / 9}
     ratio = null
@@ -60,6 +62,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
             rel = 'noopener'
             target = '_blank'
             style = ${props.force16to9 || props.hasRatioAndNoLightboxWithPreserveAspectRatio ? 'padding-top:' + props.forceRatio : null}
+            data-gdpr = ${props.enableGdprMessage && props.gdprMessage ? props.gdprMessage : null}
             data-ratio = ${props.forceRatio || null}
             data-fs = ${!!props.allowFullScreen}
             data-embed = Neos.Fusion:Join {
