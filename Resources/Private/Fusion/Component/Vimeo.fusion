@@ -34,6 +34,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     id = null
 
     poster = null
+    poster2x = null
     alternativeText = null
 
     playButton = Jonnitto.PrettyEmbedHelper:Button.Play
@@ -83,7 +84,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
         }
         content = afx`
             {props.playButton}
-            <img alt={props.alternativeText} src={props.thumbnail} loading='lazy' />
+            <img alt={props.alternativeText} src={props.thumbnail} srcset={props.poster && props.poster2x ? props.poster + ' 1x,' + props.poster2x + ' 2x' : null} loading='lazy' />
         `
 
         @process.wrapper = Jonnitto.PrettyEmbedHelper:Wrapper {
