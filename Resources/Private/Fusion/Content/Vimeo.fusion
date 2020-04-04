@@ -8,6 +8,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEm
     alternativeText = ${q(node).property('metadataTitle')}
     imageFromVimeo = ${q(node).property('metadataImage')}
     ratio = ${q(node).property('metadataRatio')}
+    maximumWidth = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.maximumWidth')}
 
     force16to9 = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'force16to9'
