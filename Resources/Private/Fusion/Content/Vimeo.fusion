@@ -12,30 +12,74 @@ prototype(Jonnitto.PrettyEmbedVimeo:Content.Vimeo) < prototype(Jonnitto.PrettyEm
     maximumWidth = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.maximumWidth')}
     async = true
 
+    # Should the video be opened on a lightbox?
+    lightbox = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'lightbox'
+    }
+
+    # When the lightbox is set, should the preview image preserve his aspect ratio?
+    preserveAspectRatio = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'preserveAspectRatio'
+    }
+
+    # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9
     force16to9 = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'force16to9'
     }
+
+    # Whether to restart the video automatically after reaching the end.
+    loop = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'loop'
+    }
+
+    # Whether the video plays inline on supported mobile devices.
+    # Note that if set to false it does not imply that the video will always be played in fullscreen.
+    playsinline = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'playsinline'
+    }
+
+    # Allow full screen
     allowFullScreen = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'allowFullScreen'
     }
+
+    # Whether to pause the current video when another Vimeo video on the same page starts to play.
+    # Set this value to false to permit simultaneous playback of all the videos on the page.
     autopause = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'autopause'
     }
-    color = Jonnitto.PrettyEmbedHelper:GetProperty {
-        property = 'color'
-    }
+
+    # Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
     background = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'background'
     }
+
+    # Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
+    muted = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'muted'
+    }
+
+    # Whether the responsive player and transparent background are enabled
     transparent = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'transparent'
     }
+
+    # The hexadecimal color value of the playback controls, which is normally 00ADEF.
+    color = Jonnitto.PrettyEmbedHelper:GetProperty {
+        property = 'color'
+    }
+
+    # Whether the player displays the title overlay
     previewTitle = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewTitle'
     }
+
+    # Whether to display the video owner's name.
     previewByline = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewByline'
     }
+
+    # Whether to display the video owner's portrait.
     previewPortrait = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewPortrait'
     }
