@@ -13,8 +13,8 @@ Prettier embeds for your Vimeo videos in [Neos CMS] - with nice options like hig
 | ------- | -------------- | :--------: |
 | 1.\*    | 3.3.\* + 4.\*  |            |
 | 2.\*    | ^4.2.\* + 5.\* |            |
-| 3.\*    | ^4.2.\* + 5.\* |      ✓     |
-| 4.\*    | > 5.\3         |      ✓     |
+| 3.\*    | ^4.2.\* + >= 5 |      ✓     |
+| 4.\*    | >= 5.3         |      ✓     |
 
 ## Installation
 
