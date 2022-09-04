@@ -2,7 +2,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVimeo')}
 
     live = true
-    videoID = null
+    videoID = ${null}
     videoID.@process.trim = ${Type.isString(value) ? String.trim(value) : value}
 
     lightbox = ${this.configuration.defaults.lightbox}
@@ -22,7 +22,7 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
     # Pass a ratio like this: ${16 / 9}
-    ratio = null
+    ratio = ${null}
     ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value)}
 
     // If true, this get only a value if ratio is not set
@@ -31,11 +31,11 @@ prototype(Jonnitto.PrettyEmbedVimeo:Component.Vimeo) < prototype(Neos.Fusion:Com
 
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
-    id = null
+    id = ${null}
 
-    poster = null
-    poster2x = null
-    alternativeText = null
+    poster = ${null}
+    poster2x = ${null}
+    alternativeText = ${null}
 
     playButton = Jonnitto.PrettyEmbedHelper:Button.Play
 
